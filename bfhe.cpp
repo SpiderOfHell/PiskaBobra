@@ -114,7 +114,7 @@ void executeScript(const string& path, const string& name)//обработка файла
 int main(int argc, char* argv[])//мэйн
 {
 	setlocale(0, "");
-	const string absPath = filesystem::current_path().string() + "\\bfhe.exe";//костыль абсолютного путя к файлу проги
+	const string absPath = filesystem::current_path().string() + "\\bfhe.xml";//костыль абсолютного путя к файлу проги
 	const string absScriptPath = filesystem::current_path().string() + "\\start.txt";//аналогично для стартового скрипта
 	if (argc < 3)//при неподаче всех нужных аргументов будет утешительный приз
 	{
@@ -134,16 +134,13 @@ int main(int argc, char* argv[])//мэйн
 	if (vfsPath != absPath)//проверка путя к экзешнику
 	{
 		cout << "Ошибка доступа к файлу VFS. Прекращение работы.\n";
-		return 1;
-	}
-	if (scriptPath != absScriptPath)//проверка путя к скрипту
-	{
-		cout << "Неверный путь к стартовому скрипту\n";
+		system("pause");
 		return 1;
 	}
 	if (!filesystem::exists(scriptPath))//на случай проблемной прокладки между монитором и креслом
 	{
 		cout << "Верни обратно файл стартового скрипта, его удалять нельзя было\n";
+		system("pause");
 		return 1;
 	}
 	executeScript(scriptPath, "Persona");//запуск функции обработки стартового скрипта
